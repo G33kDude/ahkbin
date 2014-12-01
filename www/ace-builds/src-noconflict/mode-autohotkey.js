@@ -13,7 +13,7 @@ var AutoHotKeyHighlightRules = function() {
     var atKeywords = 'AppDataCommonDir|AppDataDir|AutoItExe|AutoItPID|AutoItUnicode|AutoItVersion|AutoItX64|COM_EventObj|CommonFilesDir|Compiled|ComputerName|ComSpec|CR|CRLF|DesktopCommonDir|DesktopDepth|DesktopDir|DesktopHeight|DesktopRefresh|DesktopWidth|DocumentsCommonDir|error|exitCode|exitMethod|extended|FavoritesCommonDir|FavoritesDir|GUI_CtrlHandle|GUI_CtrlId|GUI_DragFile|GUI_DragId|GUI_DropId|GUI_WinHandle|HomeDrive|HomePath|HomeShare|HotKeyPressed|HOUR|InetGetActive|InetGetBytesRead|IPAddress1|IPAddress2|IPAddress3|IPAddress4|KBLayout|LF|LogonDNSDomain|LogonDomain|LogonServer|MDAY|MIN|MON|MyDocumentsDir|NumParams|OSBuild|OSLang|OSServicePack|OSTYPE|OSVersion|ProcessorArch|ProgramFilesDir|ProgramsCommonDir|ProgramsDir|ScriptDir|ScriptFullPath|ScriptLineNumber|ScriptName|SEC|StartMenuCommonDir|StartMenuDir|StartupCommonDir|StartupDir|SW_DISABLE|SW_ENABLE|SW_HIDE|SW_LOCK|SW_MAXIMIZE|SW_MINIMIZE|SW_RESTORE|SW_SHOW|SW_SHOWDEFAULT|SW_SHOWMAXIMIZED|SW_SHOWMINIMIZED|SW_SHOWMINNOACTIVE|SW_SHOWNA|SW_SHOWNOACTIVATE|SW_SHOWNORMAL|SW_UNLOCK|SystemDir|TAB|TempDir|TRAY_ID|TrayIconFlashing|TrayIconVisible|UserName|UserProfileDir|WDAY|WindowsDir|WorkingDir|YDAY|YEAR'
     
     this.$rules = { start: 
-       [ { token: 'comment.line.ahk', regex: '(?:^| );.*$' },
+       [ { token: 'comment.line.ahk', regex: '(?:^|\s);.*$' },
          { token: 'comment.block.ahk',
            regex: '/\\*', push: 
             [ { token: 'comment.block.ahk', regex: '\\*/', next: 'pop' },
@@ -42,16 +42,16 @@ var AutoHotKeyHighlightRules = function() {
            caseInsensitive: true },
          { keywordMap: {"constant.language": autoItKeywords}, regex: '\\w+\\b'},
          { keywordMap: {"variable.function": atKeywords}, regex: '@\\w+\\b'},
-         { token : "constant.numeric", regex : "[+-]?\\d+(?:(?:\\.\\d*)?(?:[eE][+-]?\\d+)?)?\\b"},
+         { token: "constant.numeric", regex: "[+-]?(?:0x)?\\d+"},
          { token: 'keyword.operator.ahk',
-           regex: '=|==|<>|:=|<|>|\\*|\\/|\\+|:|\\?|\\-' },
+           regex: '=|==|<>|:=|<|>|\\*|\\/|\\+|:|\\?|\\-|\\(|\\)|\\,|\\[|\\]|\\{|\\}' },
          { token: 'punctuation.ahk',
            regex: '#|`|::|,|\\{|\\}|\\(|\\)|\\%' },
          { token: 
             [ 'punctuation.quote.double',
               'string.quoted.ahk',
               'punctuation.quote.double' ],
-           regex: '(")((?:[^"]|"")*)(")' },
+           regex: '()("(?:[^"]|"")*")()' },
          { token: [ 'label.ahk', 'punctuation.definition.label.ahk' ],
            regex: '^([^: ]+)(:)(?!:)' } ] }
     
