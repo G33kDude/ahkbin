@@ -1,0 +1,42 @@
+body {
+	margin: 0; color: #CC9893;
+	background-color: #222222;
+	/* overflow: hidden; */
+}
+body * {
+	font-family: consolas, "Lucida Console", Monaco, "Courier New", monospace;
+	font-size: 10pt; font-weight: bold; text-decoration: none;
+}
+a:link, a:active, a:visited { color: #E4E4E4; }
+.header {
+	background-color: #3F3F3F;
+	height: 3em; line-height: 3em;
+	text-align: center;
+}
+.header a {
+	background-color: #3F3F3F; color: #CC9893;
+	font-size:2em; 
+}
+.body { text-align: center; padding: 1em; height: 100%; }
+.autohotkey {
+	background-color: #333333; color: #E4E4E4;
+	text-align: left;
+}
+.autohotkey li {
+	background-color: #3F3F3F; color: #EDEDCD;
+	margin: 0; padding: 0 0.5em; height: 1.2em;
+}
+form { margin-bottom: -1em; height: 100%; }
+textarea,#editor {
+	background-color: #3F3F3F; color: #EDEDCD;
+	width: calc(100% - 1em); margin:0; padding: 0.5em; border:none;
+	height: 75%; height: calc(100% - 10em);
+	text-align: left; position: relative;
+}
+input,select,.body .button {
+	background-color: #3F3F3F; color: #EDEDCD;
+	border-color: #333333; margin: 1em; padding: 0.25em 0.5em;
+	height: 2em; vertical-align: middle; border:none;
+}
+input[type=checkbox] { background-color: #222222; }
+input[type=submit]:hover { background-color: #333333; cursor: pointer; }
