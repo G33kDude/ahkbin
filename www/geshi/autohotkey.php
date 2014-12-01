@@ -16,7 +16,7 @@
  *
  * TODO
  * ----
- * Reference: http://www.autohotkey.com/docs/
+ * Reference: http://ahkscript.org/docs/
  *
  *************************************************************************************
  *
@@ -45,8 +45,8 @@ $language_data = array (
         ),
     'COMMENT_MULTI' => array('/*' => '*/'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array('"'),
-    'ESCAPE_CHAR' => '',
+    'QUOTEMARKS' => array(1 => '"'),
+    'ESCAPE_CHAR' => '`',
     'KEYWORDS' => array(
         1 => array(
             'while','if','and','or','else','return'
@@ -183,7 +183,7 @@ $language_data = array (
             'AllowSameLineComments','ClipboardTimeout','CommentFlag',
             'ErrorStdOut','EscapeChar','HotkeyInterval',
             'HotkeyModifierTimeout','Hotstring','IfWinActive',
-            'IfWinExist','IfWinNotActive','IfWinNotExist',
+            'IfWinExist','IfWinNotActive','IfWinNotExist','If',
             'Include','IncludeAgain','InstallKeybdHook',
             'InstallMouseHook','KeyHistory','LTrim',
             'MaxHotkeysPerInterval','MaxMem','MaxThreads',
@@ -246,8 +246,8 @@ $language_data = array (
             'F24','Browser_Back','Browser_Forward',
             'Browser_Refresh','Browser_Stop','Browser_Search',
             'Browser_Favorites','Browser_Home','Volume_Mute',
-            'Volume_Down','Volume_Up','Media_Next',
-            'Media_Prev','Media_Stop','Media_Play_Pause',
+            'Volume_Down','Volume_Up','MediNext',
+            'MediPrev','MediStop','MediPlay_Pause',
             'Launch_Mail','Launch_Media','Launch_App1',
             'Launch_App2'
             ),
@@ -273,7 +273,7 @@ $language_data = array (
         '+','-','*','/','&','^',
         '=','+=','-=','*=','/=','&=',
         '==','<','<=','>','>=',':=',
-        ',','.'
+        ',','.','|',':'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -288,42 +288,42 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #AAAAFF; font-weight: bold;',       // reserved #blue
-            2 => 'color: #88FF88;',                         // BIV yellow
-            3 => 'color: #FF00FF; font-style: italic;',       // commands purple
-            4 => 'color: #888844; font-weight: bold;',       // functions #0080FF
-            5 => 'color: #000000; font-style: italic;',    // directives #black
-            6 => 'color: #FF0000; font-style: italic;',      // hotkeys #red
-            7 => 'color: #000000; font-style: italic;',    // gui commands #black
-            8 => 'color: #000000; font-style: italic;'      // gui controls
+            1 => 'color: #E4EDED; font-style: italic;',       // flow of control
+            2 => 'color: #6495ED; font-weight: bold;',   // BIV yellow
+            3 => 'color: #CDBFA3; font-style: italic;',       // commands
+            4 => 'color: #7CC8CF; font-weight: bold;',       // functions
+            5 => 'color: #7CC8CF; font-style: italic;',    // directives
+            6 => 'color: #93CCB8; font-style: italic;',      // hotkeys #red
+            7 => 'color: #CDBFA3; font-style: italic;',    // gui commands
+            8 => 'color: #CDBFA3; font-style: italic;'      // gui controls
             ),
         'COMMENTS' => array(
-            'MULTI' => 'font-style: italic; color: #669900;',
-            1 => 'font-style: italic; color: #009933;'
+            'MULTI' => 'font-style: italic; color: #7F9F7F;',
+            1 => 'font-style: italic; color: #7F9F7F;'
             ),
         'ESCAPE_CHAR' => array(
             0 => ''
             ),
         'BRACKETS' => array(
-            0 => 'color: #00FF00; font-weight: bold;'
+            0 => 'color: #97C0EB; font-weight: bold;'
             ),
         'STRINGS' => array(
-            0 => 'font-weight: bold; color: #008080;'
+            0 => 'font-weight: bold; color: #CC9893;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #0000dd;'
+            0 => 'color: #F79B57;'
             ),
         'METHODS' => array(
             1 => 'color: #0000FF; font-style: italic; font-weight: italic;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #000000; font-weight: italic;'
+            0 => 'color: #97C0EB; font-weight: italic;'
             ),
         'REGEXPS' => array(
-            0 => 'font-weight: italic; color: #A00A0;',
-            1 => 'color: #CC0000; font-style: italic;',
-            2 => 'color: #DD0000; font-style: italic;',
-            3 => 'color: #88FF88;'
+            0 => 'font-weight: italic; color: #93CCB8;',
+            1 => 'color: #F09EC0; font-style: italic;',
+            2 => 'color: #F09EC0; font-style: italic;',
+            3 => 'color: #000080;'
             ),
         'SCRIPT' => array(
             )
@@ -338,19 +338,19 @@ $language_data = array (
         //hotstrings
         1 => '::[\w\d]+::',
         //labels
-        2 => '\w[\w\d]+:\s',
+        2 => '\R\s*\w[\w\d]+:\s',
         //Built-in Variables
         3 => '\bA_\w+\b(?![^<]*>)'
         ),
     'URLS' => array(
         1 => '',
-        2 => 'http://www.autohotkey.com/docs/Variables.htm#{FNAME}',
-        3 => 'http://www.autohotkey.com/docs/commands/{FNAME}.htm',
-        4 => 'http://www.autohotkey.com/docs/Functions.htm#BuiltIn',
-        5 => 'http://www.autohotkey.com/docs/commands/_{FNAME}.htm',
+        2 => '/?docs={FNAME}',
+        3 => 'http://ahkscript.org/docs/commands/{FNAME}.htm',
+        4 => 'http://ahkscript.org/docs/Functions.htm#{FNAME}',
+        5 => 'http://ahkscript.org/docs/commands/_{FNAME}.htm',
         6 => '',
-        7 => 'http://www.autohotkey.com/docs/commands/Gui.htm#{FNAME}',
-        8 => 'http://www.autohotkey.com/docs/commands/GuiControls.htm#{FNAME}'
+        7 => 'http://ahkscript.org/docs/commands/Gui.htm#{FNAME}',
+        8 => 'http://ahkscript.org/docs/commands/GuiControls.htm#{FNAME}'
         ),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
     'SCRIPT_DELIMITERS' => array(
