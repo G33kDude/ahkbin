@@ -33,18 +33,21 @@ if (isset($_POST["code"]))
 		// Save the code with the filename as a partial sha1 hash
 		$hash = substr(sha1($code), 0, 6);
 		file_put_contents($pastes . $hash, $code);
-		header("Location: /?p=" . $hash);
 		
 		// Save the submitted name as a cookie
 		$name = substr(trim($_POST["name"]), 0, 16);
 		setcookie("name", $name, time()+$cookie_time);
 		
+		// Redirect to the paste
+		header("Location: /?p=" . $hash);
+		
 		// Announce to IRC
 		if ($_POST["announce"])
 		{
-			// Set name
+			// Set name and description
 			if (!$name) { $name = "Anonymous"; }
-			if ($name == "tidbit") { $name = "tidbuttz"; }
+			$desc = substr(trim($_POST["desc"]), 0, 128);
+			if ($desc) { $desc = " - $desc"; }
 			
 			// Choose which channel to announce in
 			if ($_POST["channel"] == "#ahk")
@@ -59,18 +62,24 @@ if (isset($_POST["code"]))
 			}
 			
 			// Create the API call
-			$in = $channel.",$name just pasted $url/?p=$hash";
+			$in = json_encode([
+				"MethodName" => "Chat",
+				"Params" => [
+					$channel,
+					"$name just pasted $url/?p=$hash$desc"
+				]
+			]);
 			
 			// Call the API
 			$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 			if ($socket === false) { die(); }
-			$result = socket_connect($socket, 'localhost', $bot_port);
+			$result = socket_connect($socket, "localhost", $bot_port);
 			if ($result === false) { die(); }
 			socket_write($socket, $in, strlen($in));
 			socket_close($socket);
 		}
 	}
-	else // empty file
+	else // Empty file
 	{
 		header("Location: /");
 	}
@@ -159,6 +168,7 @@ else // Not doing anything special, load the normal page
 	. '<input type="submit" value="Paste it" />'
 	. '<input type="Checkbox" checked name="announce">Announce to IRC:</input>'
 	. '<select name="channel">'.$options.'</select>'
+	. '<input type="text" name="desc" placeholder="Description" maxlength="128" value="" />'
 	. '</div>'
 	. '</form>';
 }
