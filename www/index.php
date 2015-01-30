@@ -166,7 +166,7 @@ else // Not doing anything special, load the normal page
 	. '<div class="options">'
 	. '<input type="text" name="name" placeholder="Anonymous" maxlength="16" value="'.$name.'" />'
 	. '<input type="submit" value="Paste it" />'
-	. '<input type="Checkbox" checked name="announce">Announce to IRC:</input>'
+	. '<input type="Checkbox" name="announce">Announce to IRC:</input>'
 	. '<select name="channel">'.$options.'</select>'
 	. '<input type="text" name="desc" placeholder="Description" maxlength="128" value="" />'
 	. '</div>'
