@@ -50,16 +50,13 @@ if (isset($_POST["code"]))
 			if ($desc) { $desc = " - $desc"; }
 			
 			// Choose which channel to announce in
-			if ($_POST["channel"] == "#ahk")
-			{
-				$channel = "#ahk";
+			$channel = $_POST["channel"];
+			if ($channel == "#ahk")
 				$url = $url_ahk;
-			}
-			else
-			{
-				$channel = "#ahkscript";
+			else if ($POST["channel"] == "#ahkscript")
 				$url = $url_script;
-			}
+			else
+				die();
 			
 			// Create the API call
 			$in = json_encode([
