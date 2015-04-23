@@ -87,7 +87,9 @@ else if (isset($_GET["p"])) // Viewing a paste
 	if (file_exists($pastes . $name))
 	{
 		// Add relevant buttons to the top of the page
-		$body = "<a class='button' href='/?r=$name'>Raw</a><a class='button' href='/?e=$name'>Edit</a>";
+		$body = "<a class='button' href='/?r=$name'>Raw</a>" .
+			"<a class='button' href='/?e=$name'>Edit</a>" .
+			"<a class='button' href='ahk:$url_ahk/?r=$name'>Open</a>";
 		
 		// Get code
 		$code = file_get_contents($pastes . $name);
