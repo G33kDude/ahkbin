@@ -53,10 +53,8 @@ if (isset($_POST["code"]))
 			$channel = $_POST["channel"];
 			if ($channel == "#ahk")
 				$url = $url_ahk;
-			else if ($POST["channel"] == "#ahkscript")
-				$url = $url_script;
 			else
-				die();
+				$url = $url_script;
 			
 			// Create the API call
 			$in = json_encode([
