@@ -27,8 +27,8 @@ if (isset($_GET["docs"]))
 // Submitting code
 if (isset($_POST["code"]))
 {
-	$code = trim($_POST["code"]);
-	if ($code)
+	$code = $_POST["code"];
+	if (trim($code))
 	{
 		// Save the code with the filename as a partial sha1 hash
 		$hash = substr(sha1($code), 0, 6);
