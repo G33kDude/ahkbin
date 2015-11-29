@@ -1,5 +1,5 @@
 server {
-	listen 80;
+	listen 38943;
 	
 	root /usr/share/nginx/www;
 	index index.php;
