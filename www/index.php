@@ -36,7 +36,7 @@ if (isset($_POST["code"]))
 	header("Location: ./?p=$hash");
 	
 	// Announce to IRC
-	if ($_POST["announce"])
+	if ($_POST["channel"])
 	{
 		// Set name and description
 		if (!$name) { $name = "Anonymous"; }
@@ -51,7 +51,7 @@ if (isset($_POST["code"]))
 			"MethodName" => "Chat",
 			"Params" => [
 				$channel,
-				"$name just pasted $url/?p=$hash$desc"
+				"[ahkbin] $name just pasted $url/?p=$hash$desc"
 			]
 		]);
 		
@@ -136,9 +136,9 @@ else
 					<div class="options">
 						<input type="text" name="name" placeholder="Anonymous" maxlength="16" value="<?=$name?>" />
 						<input type="submit" value="Paste it" />
-						<input type="Checkbox" name="announce">Announce to IRC:</input>
 						<select name="channel">
-							<option selected="selected">#ahk</option>
+							<option selected="selected" value="">Announce to IRC</option>
+							<option>#ahk</option>
 							<option>#ahkscript</option>
 						</select>
 						<input type="text" name="desc" placeholder="Description" maxlength="128" value="" />
