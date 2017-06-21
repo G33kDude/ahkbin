@@ -5,7 +5,7 @@ html, body {
 
 body {
 	color: #BC9458; background-color: #323232;
-	font: 16px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+	font: 16px/normal 'Consolas', 'Monaco', 'Menlo', 'Ubuntu Mono', 'source-code-pro', monospace;
 }
 
 /********** Layout **********/
