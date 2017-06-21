@@ -136,11 +136,7 @@ else
 					<div class="options">
 						<input type="text" name="name" placeholder="Anonymous" maxlength="16" value="<?=$name?>" />
 						<input type="submit" value="Paste it" />
-						<select name="channel">
-							<option selected="selected" value="">Announce to IRC</option>
-							<option>#ahk</option>
-							<option>#ahkscript</option>
-						</select>
+						<input type="checkbox" name="channel" value="#ahk">Announce to IRC</input>
 						<input type="text" name="desc" placeholder="Description" maxlength="128" value="" />
 					</div>
 <?php } ?>
