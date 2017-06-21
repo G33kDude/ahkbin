@@ -141,7 +141,8 @@ else
 					</div>
 <?php } ?>
 				</form>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.7/ace.js" type="text/javascript" charset="utf-8"></script>
+				<script src="mode-autohotkey.js" type="text/javascript"></script>
 				<script src="index.js" type="text/javascript"></script>
 			</div>
 		</div>
