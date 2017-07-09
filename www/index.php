@@ -125,6 +125,7 @@ else
 				<form action="." method="POST" id="ahkform">
 <?php if ($readonly) { ?>
 					<div class="options">
+						<a class='button reindent' href=''>Reindent</a>
 						<a class='button' id='rawbutton' href='./?r=<?=$hash?>'>Raw</a>
 						<a class='button' id='editbutton' href='./?e=<?=$hash?>'>Edit</a>
 						<a class='button' href='ahk:<?=$url?>/?r=<?=$hash?>'>Open</a>
@@ -134,6 +135,7 @@ else
 					<div id="ahkedit"></div>
 <?php if (!$readonly) { ?>
 					<div class="options">
+						<a class='button reindent' href=''>Reindent</a>
 						<input type="text" name="name" placeholder="Anonymous" maxlength="16" value="<?=$name?>" />
 						<input type="submit" value="Paste it" />
 						<input type="checkbox" name="channel" value="#ahk">Announce to IRC</input>
@@ -144,6 +146,7 @@ else
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.7/ace.js" type="text/javascript" charset="utf-8"></script>
 				<script src="mode-autohotkey.js" type="text/javascript"></script>
 				<script src="index.js" type="text/javascript"></script>
+				<script src="indent.js" type="text/javascript"></script>
 			</div>
 		</div>
 		<footer>Pastebin &copy;GeekDude 2015 &#8226; Storage not guaranteed</footer>
