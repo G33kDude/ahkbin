@@ -149,6 +149,6 @@ else
 				<script src="indent.js" type="text/javascript"></script>
 			</div>
 		</div>
-		<footer>Pastebin &copy;GeekDude 2015 &#8226; Storage not guaranteed</footer>
+		<footer>Pastebin &copy;GeekDude 2015-2017 &#8226; Storage not guaranteed</footer>
 	</body>
 </html>
