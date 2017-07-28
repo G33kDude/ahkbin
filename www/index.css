@@ -136,3 +136,23 @@ slightly grayer than normal text */
 	z-index: 2;
 	background-color: #353535;
 }
+
+
+/*********** responsive CSS ***************/
+@media only screen and (max-width: 1000px) {
+    .options {
+        margin-bottom: 0em;
+    }
+	footer {
+		margin-top: 6em;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+    .options {
+        margin-bottom: 0em;
+    }
+	footer {
+		margin-top: 13em;
+	}
+}
