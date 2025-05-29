@@ -1,0 +1,21 @@
+services:
+  web:
+    container_name: web
+    image: nginx:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./www:/var/www/html
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro
+    links:
+      - php-fpm
+
+  php-fpm:
+    container_name: phpfpm
+    image: php:8-fpm
+    environment:
+      SECRET_KEY: supersecret
+    volumes:
+      - ./www:/var/www/html
+      - ./pastes:/pastes
+      - ./archive:/archive

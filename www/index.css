@@ -1,10 +1,14 @@
-html, body {
-	margin: 0; padding: 0;
-	width: 100%; height: 100%;
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
 }
 
 body {
-	color: #BC9458; background-color: #323232;
+	color: #BC9458;
+	background-color: #323232;
 	font: 16px/normal 'Consolas', 'Monaco', 'Menlo', 'Ubuntu Mono', 'source-code-pro', monospace;
 }
 
@@ -25,7 +29,8 @@ body {
 
 /********** Header and Footer **********/
 
-header, footer {
+header,
+footer {
 	background: #3b3b3b;
 	text-align: center;
 }
@@ -48,14 +53,18 @@ footer {
 
 #ahkform {
 	display: inline-block;
-	height: 100%; width: 100%;
+	height: 100%;
+	width: 100%;
 	color: #FFFFFF;
 	text-align: center;
 }
 
-#ahkedit, #ahkarea {
-	width: 100%; height: calc(100% - 4em);
-	color: inherit; background-color: inherit;
+#ahkedit,
+#ahkarea {
+	width: 100%;
+	height: calc(100% - 4em);
+	color: inherit;
+	background-color: inherit;
 	font: inherit;
 	text-align: left;
 }
@@ -77,11 +86,15 @@ footer {
 	text-align: center;
 }
 
-.options input, .options select, .options .button {
-	margin: 1em; padding: 0.5em;
+.options input,
+.options select,
+.options .button {
+	margin: 1em;
+	padding: 0.5em;
 	display: inline-block;
-	color: inherit; background-color: #3b3b3b;
-	border:none;
+	color: inherit;
+	background-color: #3b3b3b;
+	border: none;
 	vertical-align: middle;
 	font: inherit;
 	text-decoration: none;
@@ -91,7 +104,8 @@ footer {
 	min-width: 4em;
 }
 
-input[type=submit]:hover, .button:hover {
+input[type=submit]:hover,
+.button:hover {
 	background-color: #3f3f3f;
 	cursor: pointer;
 }
@@ -102,18 +116,25 @@ input[type=submit]:hover, .button:hover {
 } */
 
 /* Set text color for input boxes */
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+::-webkit-input-placeholder {
+	/* WebKit, Blink, Edge */
 	color: #999999;
 }
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+
+:-moz-placeholder {
+	/* Mozilla Firefox 4 to 18 */
 	color: #999999;
 	opacity: 1;
 }
-::-moz-placeholder { /* Mozilla Firefox 19+ */
+
+::-moz-placeholder {
+	/* Mozilla Firefox 19+ */
 	color: #999999;
 	opacity: 1;
 }
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
 	color: #999999;
 }
 
@@ -140,18 +161,20 @@ slightly grayer than normal text */
 
 /*********** responsive CSS ***************/
 @media only screen and (max-width: 1000px) {
-    .options {
-        margin-bottom: 0em;
-    }
+	.options {
+		margin-bottom: 0em;
+	}
+
 	footer {
 		margin-top: 6em;
 	}
 }
 
 @media only screen and (max-width: 600px) {
-    .options {
-        margin-bottom: 0em;
-    }
+	.options {
+		margin-bottom: 0em;
+	}
+
 	footer {
 		margin-top: 13em;
 	}
