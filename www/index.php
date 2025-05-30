@@ -1,9 +1,8 @@
 <?php
 
 // Settings
-$url = "http://p.autohotkey.com";
+$url = getenv("BASE_URL");
 $pastes = "/pastes/";
-$bot_port = 26656;
 $cookie_time = 60 * 60 * 24 * 30; // 30 days
 
 function ahkstrip($input, $max = 10)
@@ -15,7 +14,6 @@ function reply(int $status_code, $message): void
 {
 	http_response_code($status_code);
 	header('Content-Type: application/json');
-
 	die(json_encode($message));
 }
 
@@ -38,6 +36,36 @@ if (isset($_POST["code"])) {
 
 	// Redirect to the paste
 	header("Location: ./?p=$hash");
+
+	// Announce to IRC
+	if ($_POST["channel"] && getenv("IRC_ANNOUNCE_ENABLE") == "true")
+	{
+		// Set name and description
+		if (!$name) { $name = "Anonymous"; }
+		$desc = substr(trim($_POST["desc"]), 0, 128);
+		if ($desc) { $desc = " - $desc"; }
+
+		// Choose which channel to announce in
+		$channel = $_POST["channel"];
+
+		// Create the API call
+		$in = json_encode([
+			"MethodName" => "Chat",
+			"Params" => [
+				$channel,
+				"[ahkbin] $name just pasted $url/?p=$hash$desc"
+			]
+		]);
+
+		// Call the API
+		$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+		if ($socket === false) { die(); }
+		$result = socket_connect($socket, getenv("IRC_ANNOUNCE_HOST"), (int)getenv("IRC_ANNOUNCE_PORT"));
+		if ($result === false) { die(); }
+		socket_write($socket, $in, strlen($in));
+		socket_close($socket);
+	}
+
 	die();
 } else if (isset($_GET["r"])) {
 	// Viewing a raw paste
@@ -55,8 +83,7 @@ if (isset($_POST["code"])) {
 
 // Deleting a paste (ace integration)
 // vibe coded so hard dude
-$body = file_get_contents("php://input");
-if ($body !== "") {
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	$secret_key = getenv("SECRET_KEY");
 	if (!$secret_key) {
 		reply(400, ["error" => "im not configured correctly"]);
@@ -68,6 +95,7 @@ if ($body !== "") {
 	}
 
 	try {
+		$body = file_get_contents("php://input");
 		$data = json_decode($body, true);
 		$ids = $data['delete'];
 	} catch (Exception $e) {
@@ -125,6 +153,7 @@ if (isset($_GET["e"])) {
 } else if (isset($_GET["p"])) // Viewing a paste
 {
 	$hash = ahkstrip($_GET["p"]);
+	header("ahk-location: $url/?p=$hash");
 	$filepath = $pastes . $hash;
 	if (file_exists($filepath))
 		$code = htmlspecialchars(file_get_contents($filepath));

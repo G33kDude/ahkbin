@@ -14,7 +14,11 @@ services:
     container_name: phpfpm
     image: php:8-fpm
     environment:
+      BASE_URL: "http://localhost:8080"
       SECRET_KEY: supersecret
+      IRC_ANNOUNCE_ENABLE: false
+      IRC_ANNOUNCE_HOST: "localhost"
+      IRC_ANNOUNCE_PORT: 26656
     volumes:
       - ./www:/var/www/html
       - ./pastes:/pastes
