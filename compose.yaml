@@ -1,25 +1,23 @@
 services:
   web:
-    container_name: web
     image: nginx:latest
     ports:
       - 8080:80
     volumes:
-      - ./www:/var/www/html
+      - ./src/public:/var/www/public
       - ./default.conf:/etc/nginx/conf.d/default.conf:ro
     links:
       - php-fpm
 
   php-fpm:
-    container_name: phpfpm
     image: php:8-fpm
     environment:
       BASE_URL: "http://localhost:8080"
-      SECRET_KEY: supersecret
+      DELETE_CREDENTIALS: supersecret
       IRC_ANNOUNCE_ENABLE: false
       IRC_ANNOUNCE_HOST: "localhost"
       IRC_ANNOUNCE_PORT: 26656
     volumes:
-      - ./www:/var/www/html
+      - ./src:/var/www
       - ./pastes:/pastes
       - ./archive:/archive
